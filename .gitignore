@@ -1,0 +1,14 @@
+.DS_Store
+.vscode/
+
+# Node / tooling (future-proof)
+node_modules/
+dist/
+build/
+.next/
+.turbo/
+.cache/
+
+# Logs
+*.log
+

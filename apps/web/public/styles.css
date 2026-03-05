@@ -1,0 +1,674 @@
+:root {
+  --c-main: #5d0f08;
+  --c-hero: #7a7058;
+  --c-darkgreen: #1e2521;
+  --c-body: #000000;
+  --c-muted: #535f59;
+
+  --shadow-soft: 0px 4px 37.1px rgba(185, 159, 159, 0.25);
+  --shadow-card: 0px 4px 6.7px rgba(185, 159, 159, 0.25);
+
+  --page-scale: 1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: var(--c-body);
+  font-family:
+    "Neue Haas Grotesk Display Pro",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+
+.viewport {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding: 0;
+}
+
+.stage {
+  width: calc(1920px * var(--page-scale));
+  height: calc(6520px * var(--page-scale));
+}
+
+.page {
+  position: relative;
+  width: 1920px;
+  height: 6520px;
+  background: #ffffff;
+  overflow: hidden;
+  transform: scale(var(--page-scale));
+  transform-origin: top center;
+}
+
+/* Header */
+.icon-account {
+  position: absolute;
+  left: 87px;
+  top: 99px;
+  width: 33px;
+  height: 33px;
+}
+
+.logo {
+  position: absolute;
+  left: 924px;
+  top: 87px;
+  width: 72px;
+  height: 90px;
+  object-fit: cover;
+}
+
+.country {
+  position: absolute;
+  left: 1658px;
+  top: 100px;
+  height: 33px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.country-icon {
+  width: 27px;
+  height: 27px;
+}
+
+.country-text {
+  font-size: 20px;
+  line-height: 1.14;
+  color: var(--c-main);
+  font-weight: 500;
+}
+
+.icon-cart {
+  position: absolute;
+  left: 1583px;
+  top: 99px;
+  width: 31px;
+  height: 31px;
+}
+
+.cart-part {
+  position: absolute;
+}
+
+/* Match the Figma-generated insets */
+.cart-part--dot {
+  left: 31.25%;
+  top: 78.13%;
+  width: 6.25%;
+  height: 6.25%;
+}
+
+.cart-part--outline {
+  left: 9.38%;
+  top: 15.63%;
+  width: 71.87%;
+  height: 53.12%;
+}
+
+.cart-part--handle {
+  left: 25%;
+  top: 25%;
+  width: 62.16%;
+  height: 31.25%;
+}
+
+/* Hero */
+.hero-mask {
+  position: absolute;
+  left: -41px;
+  top: 228px;
+  width: 1700px;
+  height: 1251px;
+  -webkit-mask-image: url("./assets/figma/hero-mask.svg");
+  mask-image: url("./assets/figma/hero-mask.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 1589px 1251px;
+  mask-size: 1589px 1251px;
+  -webkit-mask-position: 71px 0px;
+  mask-position: 71px 0px;
+}
+
+.hero-image {
+  position: absolute;
+  left: -7.67%;
+  top: -14.87%;
+  width: 107.69%;
+  height: 118.47%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.hero-text {
+  position: absolute;
+  width: 556px;
+  height: 64px;
+  font-size: 24px;
+  line-height: 1.3;
+  color: var(--c-hero);
+  font-weight: 400;
+  text-align: right;
+  margin: 0;
+}
+
+.hero-text--1 {
+  left: 1049px;
+  top: 854px;
+}
+
+.hero-text--2 {
+  left: 1083px;
+  top: 886px;
+}
+
+/* Section titles */
+.section-title {
+  position: absolute;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--c-main);
+  font-weight: 500;
+}
+
+.section-title--products {
+  left: 280px;
+  top: 1405px;
+}
+
+.section-title--featured {
+  left: 280px;
+  top: 2952px;
+}
+
+.section-title--shipping {
+  left: 178px;
+  top: 4545px;
+}
+
+.section-title--faq {
+  left: 178px;
+  top: 4866px;
+}
+
+.section-title--app {
+  left: 178px;
+  top: 5230px;
+}
+
+/* Products */
+.products-bar {
+  position: absolute;
+  left: 691px;
+  top: 1471px;
+  width: 67px;
+  height: 368px;
+  background: linear-gradient(179.884deg, rgb(146, 145, 141) 0%, rgb(252, 252, 252) 57.554%);
+}
+
+.product-card {
+  position: absolute;
+  left: 89px;
+  width: 1741px;
+  border: 0.5px solid #ffffff;
+  box-shadow: var(--shadow-soft);
+  background: transparent;
+  overflow: hidden;
+}
+
+.product-card--woods {
+  top: 1479px;
+  height: 319px;
+}
+
+.product-card--gems {
+  top: 1864px;
+  height: 318px;
+}
+
+.product-card--seeds {
+  top: 2248px;
+  height: 319px;
+}
+
+.product-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.product-bg--woods {
+  background: linear-gradient(190.51deg, rgb(232, 232, 232) 6.5992%, rgb(255, 255, 255) 101.72%);
+}
+
+.product-bg--gems {
+  background: linear-gradient(122.51deg, rgb(242, 242, 241) 14.497%, rgb(255, 255, 255) 118.24%);
+}
+
+.product-bg--seeds {
+  background: linear-gradient(261.236deg, rgb(242, 242, 241) 20.173%, rgb(243, 243, 242) 31.723%, rgb(255, 255, 255) 78.459%);
+}
+
+.product-title {
+  position: absolute;
+  left: 330px;
+  top: 95px;
+  width: 268px;
+  margin: 0;
+  font-size: 50px;
+  line-height: 1.5;
+  color: var(--c-darkgreen);
+  font-weight: 500;
+}
+
+.product-title--right {
+  left: 941px;
+}
+
+.product-desc {
+  position: absolute;
+  left: 335px;
+  top: 175px;
+  width: 280px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--c-muted);
+  font-weight: 400;
+}
+
+.product-desc--right {
+  left: 1009px;
+  width: 239px;
+}
+
+.product-desc--seeds {
+  left: 1158px;
+  top: calc(50% - 23.5px);
+  width: 252px;
+}
+
+.product-card--seeds .product-title {
+  left: 416px;
+  top: calc(50% - 37.5px);
+  width: 167px;
+}
+
+.product-image-wrap {
+  position: absolute;
+}
+
+.product-image-wrap--woods {
+  left: 961px;
+  top: -32px;
+  width: 780px;
+  height: 383px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.rotate-neg-90 {
+  transform: rotate(-90deg);
+  width: 383px;
+  height: 780px;
+  position: relative;
+}
+
+.rotate-neg-90 .product-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-image-wrap--gems {
+  left: 75px;
+  top: -135px;
+  width: 773.573px;
+  height: 584.146px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.gems-transform {
+  transform: scaleY(-1) rotate(112.65deg);
+  width: 342.941px;
+  height: 695.122px;
+  position: relative;
+}
+
+.gems-transform .product-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-image-wrap--seeds {
+  left: 50%;
+  top: 28px;
+  width: 521.139px;
+  height: 392.311px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.seeds-transform {
+  transform: rotate(-84.9deg);
+  width: 350px;
+  height: 492px;
+  position: relative;
+}
+
+.seeds-transform .product-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Featured */
+.featured-grid {
+  position: absolute;
+  left: 89px;
+  top: 3018px;
+  width: 1786px;
+  height: 917px;
+  will-change: transform;
+}
+
+.featured-bg {
+  position: absolute;
+  left: -7px;
+  top: 0;
+  width: 1793px;
+  height: 916px;
+  background: #ffffff;
+}
+
+.featured-card {
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  border-radius: 10px;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  background: #ffffff;
+  will-change: transform;
+}
+
+.featured-card--1 {
+  left: 293px;
+  top: 115px;
+}
+
+.featured-card--2 {
+  left: 893px;
+  top: 115px;
+}
+
+.featured-card--3 {
+  left: -7px;
+  top: 514px;
+}
+
+.featured-card--4 {
+  left: 1193px;
+  top: 514px;
+}
+
+.featured-card--5 {
+  left: 593px;
+  top: 516px;
+  height: 395px;
+}
+
+.featured-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featured-card--2-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(164.936deg, rgb(255, 255, 255) 0.34228%, rgba(185, 159, 159, 0.25) 101.6%);
+}
+
+.featured-card--2-image {
+  position: absolute;
+  left: -100px;
+  top: -74px;
+  width: 474.77px;
+  height: 535.745px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rotate-36 {
+  transform: rotate(36.14deg);
+  width: 221.547px;
+  height: 501.616px;
+  position: relative;
+}
+
+.rotate-36 img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featured-side {
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  overflow: visible;
+  will-change: transform;
+}
+
+.featured-side--left {
+  left: -300px;
+  top: 115px;
+}
+
+.featured-side--right {
+  left: 1486px;
+  top: 115px;
+}
+
+.featured-side--right-bottom {
+  left: 1786px;
+  top: 515px;
+}
+
+.mask-300x400,
+.mask-qr {
+  width: 300px;
+  height: 400px;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 300px 400px;
+  mask-size: 300px 400px;
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+  overflow: hidden;
+}
+
+.mask-300x400 {
+  -webkit-mask-image: url("./assets/figma/mask-300x400.svg");
+  mask-image: url("./assets/figma/mask-300x400.svg");
+}
+
+.mask-qr {
+  -webkit-mask-image: url("./assets/figma/mask-qr.svg");
+  mask-image: url("./assets/figma/mask-qr.svg");
+}
+
+.featured-side-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Shipping */
+.shipping-text {
+  position: absolute;
+  left: 713px;
+  top: 4549px;
+  width: 1012px;
+  font-size: 20px;
+  line-height: 1.7;
+  color: #000000;
+}
+
+.shipping-text p {
+  margin: 0;
+}
+
+.shipping-text p + p {
+  margin-top: 0;
+}
+
+.shipping-text .em {
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* FAQ */
+.faq-list {
+  position: absolute;
+  left: 690px;
+  top: 4886px;
+  width: 577px;
+  margin: 0;
+  padding-left: 30px;
+  font-size: 20px;
+  line-height: 1.7;
+  color: #000000;
+}
+
+/* App */
+.app-label {
+  position: absolute;
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.5;
+  text-align: center;
+  color: #000000;
+}
+
+.app-label--ios {
+  left: 700px;
+  top: 5248px;
+  width: 143px;
+}
+
+.app-label--android {
+  left: 1106px;
+  top: 5248px;
+  width: 171px;
+}
+
+.qr {
+  position: absolute;
+  top: 5312px;
+  width: 130px;
+  height: 130px;
+  background: #d9d9d9;
+}
+
+.qr img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.qr--ios {
+  left: 795px;
+}
+
+.qr--android {
+  left: 1192px;
+}
+
+/* Footer */
+.footer-mark {
+  position: absolute;
+  left: 728.813px;
+  top: 5800.523px;
+  width: 463.351px;
+  height: 658.316px;
+  background: var(--c-main);
+  -webkit-mask-image: url("./assets/figma/footer-mask.png");
+  mask-image: url("./assets/figma/footer-mask.png");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 447px 565.051px;
+  mask-size: 447px 565.051px;
+  -webkit-mask-position: 8.187px 66.476px;
+  mask-position: 8.187px 66.476px;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.footer-copy {
+  position: absolute;
+  left: 89px;
+  top: 6362px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--c-main);
+  font-weight: 500;
+}
+
+.footer-address {
+  position: absolute;
+  left: 1595px;
+  top: 6335px;
+  width: 268px;
+  color: var(--c-main);
+  font-size: 13px;
+  line-height: 1.9;
+  font-weight: 500;
+}
+
+.footer-address p {
+  margin: 0;
+}
