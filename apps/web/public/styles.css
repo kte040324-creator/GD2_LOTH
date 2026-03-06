@@ -47,17 +47,20 @@ body {
 }
 
 .stage {
-  width: calc(1920px * var(--page-scale));
+  position: relative;
+  width: 100%;
   height: calc(6520px * var(--page-scale));
 }
 
 .page {
-  position: relative;
+  position: absolute;
+  left: 50%;
+  top: 0;
   width: 1920px;
   height: 6520px;
   background: #ffffff;
   overflow: hidden;
-  transform: scale(var(--page-scale));
+  transform: translateX(-50%) scale(var(--page-scale));
   transform-origin: top center;
 }
 

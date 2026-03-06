@@ -194,7 +194,7 @@
 
           const items = Array.from(grid.querySelectorAll(".featured-item"));
           const deltas = new Map();
-          const SPREAD_EASE = 2.2; // >1: slower at start, faster later
+          const SPREAD_EASE = 2.2;
 
           const measure = () => {
             deltas.clear();
@@ -225,7 +225,6 @@
           const render = (t) => {
             const p = getProgress();
 
-            // Cluster -> spread (scroll-driven)
             for (const el of items) {
               const d = deltas.get(el);
               if (!d) continue;
@@ -234,10 +233,9 @@
               el.style.transform = `translate(${tx}px, ${ty}px)`;
             }
 
-            // Auto horizontal pan (only while visible, grows as it spreads)
             if (isInView()) {
-              const range = 360; // total travel in px (design space)
-              const speed = 0.035; // cycles per ms (controls how fast it moves)
+              const range = 360;
+              const speed = 0.035;
               const phase = (t * speed) % (2 * range);
               const tri = phase < range ? phase : 2 * range - phase;
               const pan = (tri - range / 2) * p;
@@ -267,3 +265,4 @@
     </script>
   </body>
 </html>
+

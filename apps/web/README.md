@@ -1,6 +1,6 @@
 # Web (static landing)
 
-This folder currently contains a **static 1920px landing page** generated from Figma.
+This folder contains a **static 1920px landing page** generated from Figma.
 
 ## Preview
 
