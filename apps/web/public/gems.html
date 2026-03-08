@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gems - LOTH Bracelet</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./gems.css" />
+</head>
+<body>
+  <a href="index.html" class="page-back" aria-label="Back">
+    <img src="./assets/figma/icon-back.svg" alt="" width="31" height="31" />
+  </a>
+  <main class="viewport viewport--gems">
+    <div class="stage stage--gems">
+      <div class="page page--gems">
+        <!-- 헤더: 메인 랜딩과 동일 (styles.css .header) -->
+        <header class="header" aria-label="Header">
+          <div class="profile-trigger" aria-label="Profile">
+            <img class="icon-account" src="./assets/figma/icon-account.svg" alt="" />
+            <div class="profile-overlay" aria-hidden="true">
+              <div class="profile-overlay__chrome"></div>
+              <div class="profile-frame" aria-hidden="true">
+                <div class="profile-frame__panel"></div>
+                <div class="profile-frame__hello">
+                  <div>Hello,</div>
+                  <div>Taeeun Kim</div>
+                </div>
+                <img class="profile-frame__line" src="./assets/figma/profile-menu-line.svg" alt="" />
+                <div class="profile-frame__item profile-frame__item--active">My Profile</div>
+                <div class="profile-frame__item profile-frame__item--dim" style="top: 233px">My Orders</div>
+                <div class="profile-frame__item profile-frame__item--dim" style="top: 304px">My Addresses</div>
+                <div class="profile-frame__item profile-frame__item--dim" style="top: 379px">My points</div>
+                <div class="profile-frame__item profile-frame__item--dim" style="top: 449px">Recently Viewed</div>
+              </div>
+            </div>
+          </div>
+          <a href="index.html" class="logo-link logo-link--gems">
+            <img class="logo" src="./assets/figma/logo.png" alt="LOTH" />
+          </a>
+          <div class="country" aria-label="Country">
+            <img class="country-icon" src="./assets/figma/icon-earth.svg" alt="" />
+            <span class="country-text">United States</span>
+          </div>
+          <div class="icon-cart" aria-label="Cart">
+            <img class="cart-part cart-part--dot" src="./assets/figma/icon-cart-dot.svg" alt="" />
+            <img class="cart-part cart-part--outline" src="./assets/figma/icon-cart-outline.svg" alt="" />
+            <img class="cart-part cart-part--handle" src="./assets/figma/icon-cart-handle.svg" alt="" />
+          </div>
+        </header>
+
+        <div class="gems-hero-wrap">
+          <div class="gems-hero-inner">
+            <img src="./assets/figma/products-gems.png" alt="Gems" />
+          </div>
+        </div>
+
+        <p class="gems-breadcrumb">Products – <strong>Gems</strong></p>
+
+        <div class="gems-rect gems-rect--left">
+          <div class="gems-rect__canvas" data-three data-model="gem_agate.glb"></div>
+        </div>
+        <div class="gems-rect gems-rect--center">
+          <div class="gems-rect__canvas" data-three data-model="gem_whitejade.glb"></div>
+        </div>
+        <div class="gems-rect gems-rect--right">
+          <div class="gems-rect__canvas" data-three data-model="gem_jade.glb"></div>
+        </div>
+
+        <div class="gems-logo-deco gems-logo-deco--right"><img src="./assets/figma/logo.png" alt="" /></div>
+        <div class="gems-logo-deco gems-logo-deco--center"><img src="./assets/figma/logo.png" alt="" /></div>
+        <div class="gems-logo-deco gems-logo-deco--left"><img src="./assets/figma/logo.png" alt="" /></div>
+
+        <p class="gems-footer-copy">Copyright LOTH</p>
+        <div class="gems-footer-address">
+          <p>000-0000-0000</p>
+          <p>1300 W Mt Royal Ave, Baltimore, MD 21217</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="./woods-three.js"></script>
+  <script>
+    (function() {
+      var DESIGN_WIDTH = 1920;
+      function setScale() {
+        var scale = Math.min(1, window.innerWidth / DESIGN_WIDTH);
+        document.documentElement.style.setProperty("--page-scale", String(scale));
+      }
+      setScale();
+      window.addEventListener("resize", setScale);
+    })();
+  </script>
+</body>
+</html>

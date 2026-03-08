@@ -12,7 +12,25 @@
         <div class="page" data-node-id="222:192" aria-label="Landing page (1920px)">
         <!-- Header -->
         <header class="header" aria-label="Header">
-          <img class="icon-account" src="./assets/figma/icon-account.svg" alt="" data-node-id="222:966" />
+          <div class="profile-trigger" aria-label="Profile">
+            <img class="icon-account" src="./assets/figma/icon-account.svg" alt="" data-node-id="222:966" />
+            <div class="profile-overlay" aria-hidden="true">
+              <div class="profile-overlay__chrome"></div>
+              <div class="profile-frame" data-node-id="222:2919" aria-hidden="true">
+                <div class="profile-frame__panel"></div>
+                <div class="profile-frame__hello">
+                  <div>Hello,</div>
+                  <div>Taeeun Kim</div>
+                </div>
+                <img class="profile-frame__line" src="./assets/figma/profile-menu-line.svg" alt="" />
+                <div class="profile-frame__item profile-frame__item--active">My Profile</div>
+                <div class="profile-frame__item profile-frame__item--dim" style="top: 233px">My Orders</div>
+                <div class="profile-frame__item profile-frame__item--dim" style="top: 304px">My Addresses</div>
+                <div class="profile-frame__item profile-frame__item--dim" style="top: 379px">My points</div>
+                <div class="profile-frame__item profile-frame__item--dim" style="top: 449px">Recently Viewed</div>
+              </div>
+            </div>
+          </div>
           <img class="logo" src="./assets/figma/logo.png" alt="LOTH" data-node-id="222:266" />
           <div class="country" data-node-id="222:957" aria-label="Country">
             <img class="country-icon" src="./assets/figma/icon-earth.svg" alt="" />
@@ -39,7 +57,8 @@
           <p class="section-title section-title--products" data-node-id="222:238">Products</p>
           <div class="products-bar" data-node-id="222:250" aria-hidden="true"></div>
 
-          <div class="product-card product-card--woods" data-node-id="222:251" aria-label="Woods">
+          <div class="products-cards">
+            <a href="woods.html" class="product-card product-card--woods" data-node-id="222:251" aria-label="Woods">
             <div class="product-bg product-bg--woods" aria-hidden="true"></div>
             <h2 class="product-title">WOODS</h2>
             <p class="product-desc">Solid wood beads with natural grain and weight, offering a grounded and balanced feel.</p>
@@ -48,9 +67,9 @@
                 <img class="product-image" src="./assets/figma/products-woods.png" alt="" />
               </div>
             </div>
-          </div>
+            </a>
 
-          <div class="product-card product-card--gems" data-node-id="222:256" aria-label="Gems">
+            <a href="gems.html" class="product-card product-card--gems" data-node-id="222:256" aria-label="Gems">
             <div class="product-bg product-bg--gems" aria-hidden="true"></div>
             <div class="product-image-wrap product-image-wrap--gems" aria-hidden="true">
               <div class="gems-transform">
@@ -59,9 +78,9 @@
             </div>
             <h2 class="product-title product-title--right">GEMS</h2>
             <p class="product-desc product-desc--right">Natural gemstones selected for their color, density, and subtle variation.</p>
-          </div>
+            </a>
 
-          <div class="product-card product-card--seeds" data-node-id="222:261" aria-label="Seeds">
+            <div class="product-card product-card--seeds" data-node-id="222:261" aria-label="Seeds">
             <div class="product-bg product-bg--seeds" aria-hidden="true"></div>
             <h2 class="product-title">SEEDS</h2>
             <p class="product-desc product-desc--seeds">Organic seed beads that change over time through everyday wear.</p>
@@ -70,6 +89,7 @@
                 <img class="product-image" src="./assets/figma/products-seeds.png" alt="" />
               </div>
             </div>
+          </div>
           </div>
         </section>
 
@@ -261,6 +281,8 @@
 
         window.addEventListener("resize", onResize);
         raf = requestAnimationFrame(tick);
+
+        // Profile overlay content is synced from Figma at build time.
       })();
     </script>
   </body>

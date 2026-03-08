@@ -46,6 +46,23 @@ body {
   padding: 0;
 }
 
+/* 뒤로가기: Figma mingcute:back-line, fixed 좌측 하단 x89 / 디자인·색(#5D0F08)·위치 그대로 */
+.page-back {
+  position: fixed;
+  left: 89px;
+  bottom: 70px;
+  width: 31px;
+  height: 31px;
+  z-index: 9999;
+  display: block;
+  line-height: 0;
+}
+.page-back img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .stage {
   position: relative;
   width: 100%;
@@ -65,13 +82,125 @@ body {
 }
 
 /* Header */
-.icon-account {
+.profile-trigger {
   position: absolute;
   left: 87px;
   top: 99px;
   width: 33px;
   height: 33px;
+  z-index: 30;
 }
+
+.icon-account {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 33px;
+  height: 33px;
+  cursor: pointer;
+}
+
+.profile-overlay {
+  position: absolute;
+  left: -10px;
+  top: 44px;
+  width: 290px;
+  height: 575px;
+  border-radius: 16px;
+  overflow: visible;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.12);
+  background: transparent;
+}
+
+.profile-overlay::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 50px;
+  background: transparent;
+}
+
+.profile-trigger:hover .profile-overlay,
+.profile-trigger .profile-overlay:hover,
+.profile-trigger:focus-within .profile-overlay {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.profile-overlay__chrome {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.profile-frame {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 270px;
+  height: 555px;
+}
+
+.profile-frame__panel {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 270px;
+  height: 553px;
+  border-radius: 10px;
+  background: rgba(93, 15, 8, 0.9);
+}
+
+.profile-frame__hello {
+  position: absolute;
+  left: 30px;
+  top: 36px;
+  width: 158px;
+  height: 96px;
+  color: #f2f2f1;
+  font-size: 32px;
+  line-height: 1.14;
+  font-weight: 400;
+}
+
+.profile-frame__line {
+  position: absolute;
+  left: 30px;
+  top: 125px;
+  width: 158px;
+  height: 2px;
+  display: block;
+}
+
+.profile-frame__item {
+  position: absolute;
+  left: 48px;
+  width: 222px;
+  font-size: 22px;
+  line-height: 3.33;
+  color: #ffffff;
+  font-weight: 300;
+  opacity: 0.3;
+  cursor: pointer;
+  transition: opacity 160ms ease, font-weight 160ms ease;
+}
+
+.profile-frame__item--active {
+  top: 160px;
+}
+
+.profile-frame__item:hover {
+  opacity: 1;
+  font-weight: 500;
+}
+
 
 .logo {
   position: absolute;
@@ -232,29 +361,70 @@ body {
   background: linear-gradient(179.884deg, rgb(146, 145, 141) 0%, rgb(252, 252, 252) 57.554%);
 }
 
-.product-card {
+.products-cards {
   position: absolute;
   left: 89px;
+  top: 1479px;
   width: 1741px;
-  border: 0.5px solid #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: gap 420ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.products:has(.product-card:hover) .products-cards {
+  gap: 22px;
+}
+
+.product-card {
+  flex: 0 0 auto;
+  width: 1741px;
+  text-decoration: none;
+  color: inherit;
+  height: 319px;
   box-shadow: var(--shadow-soft);
   background: transparent;
   overflow: hidden;
-}
-
-.product-card--woods {
-  top: 1479px;
-  height: 319px;
+  position: relative;
+  transition:
+    height 420ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
 }
 
 .product-card--gems {
-  top: 1864px;
   height: 318px;
 }
 
-.product-card--seeds {
-  top: 2248px;
-  height: 319px;
+/* 호버 시: 선택된 카드는 높이 유지, 나머지는 얇은 흰색 상자로 */
+.products:has(.product-card:hover) .product-card:not(:hover) {
+  height: 32px !important;
+}
+
+.products:has(.product-card:hover) .product-card:not(:hover) .product-title,
+.products:has(.product-card:hover) .product-card:not(:hover) .product-desc,
+.products:has(.product-card:hover) .product-card:not(:hover) .product-image-wrap {
+  opacity: 0;
+  transition: opacity 280ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.product-card .product-title,
+.product-card .product-desc,
+.product-card .product-image-wrap {
+  transition: opacity 320ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.product-card:hover {
+  z-index: 10;
+}
+
+/* 호버 시 원재료 이미지 자연스럽게 확대 */
+.product-card .product-image {
+  transform-origin: center center;
+  transition: transform 480ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.12);
 }
 
 .product-bg {
@@ -296,7 +466,7 @@ body {
   top: 175px;
   width: 280px;
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.3;
   color: var(--c-muted);
   font-weight: 400;
@@ -674,4 +844,155 @@ body {
 
 .footer-address p {
   margin: 0;
+}
+
+/* Woods product page (from Figma Products-Woods frame) */
+.stage--woods {
+  height: calc(2850px * var(--page-scale));
+}
+
+.page--woods {
+  height: 2850px;
+  overflow: visible;
+}
+
+/* Woods header: profile icon (same as index), logo centered */
+.logo-link--woods {
+  position: absolute;
+  left: 50%;
+  top: 87px;
+  width: 72px;
+  height: 90px;
+  transform: translateX(-50%);
+  display: block;
+  text-decoration: none;
+}
+
+.logo-link--woods .logo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.woods-breadcrumb {
+  position: absolute;
+  left: 178px;
+  top: 310px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--c-darkgreen);
+  font-weight: 300;
+}
+
+.woods-breadcrumb strong {
+  font-weight: 500;
+}
+
+.woods-hero {
+  position: absolute;
+  left: 176px;
+  top: 357px;
+  width: 1743px;
+  height: 855px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.woods-hero__image-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.woods-hero__rotate {
+  transform: rotate(-90deg);
+  width: 855px;
+  height: 1743px;
+  position: relative;
+}
+
+.woods-hero__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Empty 위치 컨테이너 (배경 없음, Figma 좌표) */
+.woods-rect {
+  position: absolute;
+  width: 470px;
+  height: 470px;
+  transform: translateX(-50%);
+  overflow: visible;
+  background: transparent;
+}
+
+.woods-rect__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  overflow: visible;
+}
+
+.woods-rect__canvas canvas {
+  background: transparent !important;
+  display: block;
+}
+
+.woods-rect--1 {
+  left: 50%;
+  top: 1548px;
+}
+
+.woods-rect--2 {
+  left: calc(50% - 581px);
+  top: 2108px;
+}
+
+.woods-rect--3 {
+  left: calc(50% + 581px);
+  top: 2108px;
+}
+
+/* Decorative logos: Figma 336:276, 336:277, 336:278 좌표 그대로 */
+.woods-logo {
+  position: absolute;
+  width: 72px;
+  height: 90px;
+  object-fit: cover;
+  opacity: 0.2;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.woods-logo--left {
+  left: calc(50% - 581px);
+  top: 1718px;
+}
+
+.woods-logo--center {
+  left: calc(50% + 1px);
+  top: 2298px;
+}
+
+.woods-logo--right {
+  left: calc(50% + 581px);
+  top: 1718px;
+}
+
+.footer--woods .footer-copy {
+  top: 2770px;
+}
+
+.footer--woods .footer-address {
+  top: 2771px;
 }

@@ -1,0 +1,175 @@
+/* Gems 페이지 - Figma Products-Gems 340:306 수치만 사용, woods와 동일 구조 */
+
+.viewport--gems {
+  overflow-x: visible;
+  overflow-y: visible;
+}
+
+.stage--gems {
+  height: calc(2850px * var(--page-scale));
+}
+
+.page--gems {
+  height: 2850px;
+  overflow: visible;
+}
+
+/* Gems: 로고 링크는 woods와 동일 위치 (메인 헤더 스타일은 styles.css .header 사용) */
+.logo-link--gems {
+  position: absolute;
+  left: 50%;
+  top: 87px;
+  width: 72px;
+  height: 90px;
+  transform: translateX(-50%);
+  display: block;
+  text-decoration: none;
+}
+.logo-link--gems .logo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 히어로 image11: Figma 그대로 - 외부 래퍼 -252,-180 / 1995.718×1507.02 / 내부 -scaleY(-1) rotate(112.65deg), 884.743×1793.323 */
+.gems-hero-wrap {
+  position: absolute;
+  left: -252px;
+  top: -180px;
+  width: 1995.718px;
+  height: 1507.02px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 우측 대각선(우하단) 방향으로 꺾이도록 -112.65deg (112.65deg면 우측상단을 봄) */
+.gems-hero-inner {
+  transform: scaleY(-1) rotate(-112.65deg);
+  width: 884.743px;
+  height: 1793.323px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.gems-hero-inner img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 브레드크럼: 이미지 위 레이어, 흰색, 18px (Figma 340:318) */
+.gems-breadcrumb {
+  position: absolute;
+  left: 178px;
+  top: 310px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #ffffff;
+  font-weight: 300;
+  z-index: 5;
+}
+.gems-breadcrumb strong {
+  font-weight: 500;
+}
+
+/* 장식 로고 340:314,315,316 */
+.gems-logo-deco {
+  position: absolute;
+  width: 72px;
+  height: 90px;
+  margin-left: -36px;
+  opacity: 0.2;
+  pointer-events: none;
+}
+.gems-logo-deco img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gems-logo-deco--right {
+  left: calc(50% + 581px);
+  top: 1718px;
+}
+.gems-logo-deco--center {
+  left: calc(50% + 1px);
+  top: 2298px;
+}
+.gems-logo-deco--left {
+  left: calc(50% - 581px);
+  top: 1718px;
+}
+
+/* 푸터 340:321, 340:322 */
+.gems-footer-copy {
+  position: absolute;
+  left: calc(50% - 871px);
+  top: 2770px;
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.9;
+  color: #5d0f08;
+  font-weight: 500;
+}
+
+.gems-footer-address {
+  position: absolute;
+  left: calc(50% + 689px);
+  top: 2771px;
+  width: 268px;
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.9;
+  color: #5d0f08;
+  font-weight: 500;
+}
+.gems-footer-address p {
+  margin: 0 0 4px 0;
+}
+.gems-footer-address p:last-child {
+  margin-bottom: 0;
+}
+
+/* 3D 영역 empty6, empty5, empty4 */
+.gems-rect {
+  position: absolute;
+  width: 470px;
+  height: 470px;
+  left: 50%;
+  margin-left: -235px;
+  overflow: visible;
+  background: transparent;
+}
+
+.gems-rect__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+.gems-rect__canvas canvas {
+  background: transparent !important;
+  display: block;
+}
+
+.gems-rect--left {
+  left: calc(50% - 581px);
+  top: 2108px;
+}
+.gems-rect--center {
+  left: 50%;
+  top: 1548px;
+}
+.gems-rect--right {
+  left: calc(50% + 581px);
+  top: 2108px;
+}
