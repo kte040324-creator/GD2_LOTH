@@ -1,0 +1,542 @@
+/* ═══════════════════════════════════════════════════
+   gems-whitejade.css  –  White Jade product page (Gems)
+   Same layout as Woods detail pages (1920 px base)
+═══════════════════════════════════════════════════ */
+
+.viewport--whitejade {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.stage--whitejade {
+  height: calc(5780px * var(--page-scale, 1));
+}
+
+.page--whitejade {
+  position: relative;
+  width: 1920px;
+  height: 5780px;
+  background: var(--back, linear-gradient(159deg, #FFF 0.86%, #F2F2F1 100.38%));
+  overflow: hidden;
+  font-family: "Neue Haas Grotesk Display Pro", "Helvetica Neue", Arial, sans-serif;
+}
+
+.wj-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3076px;
+  background: linear-gradient(to bottom, #ffffff 84.063%, #e7dcdc 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.logo-link--whitejade {
+  position: absolute;
+  left: 50%;
+  top: 87px;
+  width: 72px;
+  height: 90px;
+  transform: translateX(-50%);
+  display: block;
+  text-decoration: none;
+  z-index: 30;
+}
+.logo-link--whitejade .logo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wj-breadcrumb {
+  position: absolute;
+  left: 89px;
+  top: 330px;
+  font-size: 18px;
+  font-weight: 300;
+  color: #1e2521;
+  line-height: 1.2;
+  z-index: 10;
+  margin: 0;
+  pointer-events: none;
+}
+.wj-breadcrumb strong {
+  font-weight: 700;
+  color: #5d0f08;
+}
+
+.wj-hero {
+  position: absolute;
+  left: 50%;
+  top: 255px;
+  transform: translateX(-50%);
+  width: 1920px;
+  height: 987px;
+  border-radius: 3px;
+  overflow: hidden;
+  z-index: 1;
+}
+.wj-hero img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 987px;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.wj-product {
+  position: absolute;
+  left: 322px;
+  top: 1655px;
+  width: 1349px;
+  height: 423px;
+  z-index: 2;
+}
+
+.wj-product-img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 492px;
+  height: 423px;
+  overflow: hidden;
+  border-radius: 3px;
+}
+.wj-product-img--3d {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 492px;
+  height: 423px;
+}
+.wj-product-img--3d .wj-rect__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.wj-product-img--3d .wj-rect__canvas canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+.wj-product-img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: none;
+}
+
+.wj-product-title {
+  position: absolute;
+  left: 924px;
+  top: 66px;
+  width: 238px;
+  height: 68px;
+  color: #000;
+  font-family: "Neue Haas Grotesk Display Pro", sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.wj-product-price {
+  position: absolute;
+  left: 924px;
+  top: 154px;
+  width: 96px;
+  height: 31px;
+  color: #000;
+  font-family: "Neue Haas Grotesk Display Pro", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.wj-size-s {
+  left: 924px;
+  width: 38px;
+  height: 39px;
+}
+.wj-size-m {
+  left: 972px;
+  width: 39px;
+  height: 39px;
+}
+.wj-size-l {
+  left: 1023px;
+  width: 38px;
+  height: 39px;
+}
+
+.wj-size-wrap {
+  position: absolute;
+  top: 265px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.wj-size-box {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 37px;
+  height: 37px;
+  background: #fff;
+  border: 2px solid #5d0f08;
+  border-radius: 3px;
+  pointer-events: none;
+}
+.wj-size-m .wj-size-box {
+  left: 1px;
+}
+
+.wj-size-s .wj-size-label,
+.wj-size-m .wj-size-label,
+.wj-size-l .wj-size-label {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 38px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wj-size-m .wj-size-label {
+  width: 39px;
+}
+
+.wj-size-label {
+  position: absolute;
+  margin: 0;
+  font-family: "Neue Haas Grotesk Display Pro", sans-serif;
+  font-size: 20px;
+  font-weight: 100;
+  font-style: normal;
+  color: #5d0f08;
+  line-height: 1.3;
+  text-align: center;
+  pointer-events: none;
+}
+
+.wj-add-cart {
+  position: absolute;
+  left: 924px;
+  top: 341px;
+  width: 425px;
+  height: 60px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.wj-add-cart-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 425px;
+  height: 60px;
+  background: #5d0f08;
+  border-radius: 4.3px;
+  pointer-events: none;
+}
+
+.wj-add-cart-text {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Neue Haas Grotesk Display Pro", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.3;
+  text-align: center;
+  pointer-events: none;
+}
+
+.wj-tagline {
+  position: absolute;
+  left: 89px;
+  top: 2581px;
+  width: 1655px;
+  max-width: calc(100% - 178px);
+  color: #000;
+  font-family: "Neue Haas Grotesk Display Pro", sans-serif;
+  font-size: 96px;
+  font-style: normal;
+  font-weight: 450;
+  line-height: 105%;
+  text-align: left;
+  z-index: 2;
+}
+.wj-tagline p { margin: 0; }
+
+.wj-arrow {
+  position: absolute;
+  left: 1667px;
+  top: 3608px;
+  width: 77px;
+  z-index: 10;
+  cursor: pointer;
+}
+.wj-arrow img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.wj-carousel {
+  position: absolute;
+  left: 50%;
+  top: 3524px;
+  transform: translateX(-50%);
+  width: 1920px;
+  height: 887px;
+  overflow: hidden;
+  z-index: 2;
+}
+.wj-carousel-track {
+  display: flex;
+  gap: 0;
+  height: 100%;
+  align-items: stretch;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
+}
+
+.wj-slide {
+  position: relative;
+  width: 1920px;
+  height: 887px;
+  flex-shrink: 0;
+}
+
+/* White Jade Property 이미지: 여백 미포함 export 시 여백 추가 */
+.wj-slide--card {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 60px 89px;
+}
+.wj-slide-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  box-sizing: border-box;
+}
+
+.wj-carousel-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.wj-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  border: 1px solid rgba(93,15,8,0.4);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.wj-carousel-dot.is-active {
+  background: #5d0f08;
+  transform: scale(1.2);
+}
+
+.wj-sg {
+  position: absolute;
+  left: 178px;
+  top: 4747px;
+  width: 1452px;
+  height: 586px;
+  z-index: 2;
+}
+
+.wj-sg-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 96px;
+  font-family: "Neue Haas Grotesk Display Pro", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.wj-sg-s-head,
+.wj-sg-m-head,
+.wj-sg-l-head {
+  position: absolute;
+  top: 113px;
+  width: 243px;
+  font-family: "Neue Haas Grotesk Display Pro", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #5d0f08;
+  line-height: 1.3;
+  text-align: center;
+  margin: 0;
+}
+.wj-sg-s-head { left: 549px; }
+.wj-sg-m-head { left: 878px; }
+.wj-sg-l-head { left: 1207px; }
+
+.wj-sg-row {
+  font-family: "Neue Haas Grotesk Display Pro", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  line-height: 1.3;
+  margin: 0;
+  position: absolute;
+}
+.wj-sg-circ {
+  left: 115px;
+  top: 214px;
+  width: 122px;
+}
+.wj-sg-fit {
+  left: 115px;
+  top: 345px;
+  width: 78px;
+}
+
+.wj-sg-s-circ,
+.wj-sg-m-circ,
+.wj-sg-l-circ,
+.wj-sg-s-fit,
+.wj-sg-m-fit,
+.wj-sg-l-fit {
+  position: absolute;
+  font-family: "Neue Haas Grotesk Display Pro", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #000;
+  line-height: 1.5;
+  white-space: nowrap;
+  margin: 0;
+}
+.wj-sg-s-circ { left: 581px;  top: 223px; }
+.wj-sg-m-circ { left: 910px;  top: 223px; }
+.wj-sg-l-circ { left: 1238px; top: 223px; }
+.wj-sg-s-fit  { left: 643px;  top: 341px; }
+.wj-sg-m-fit  { left: 961px;  top: 341px; }
+.wj-sg-l-fit  { left: 1286px; top: 341px; }
+
+.wj-sg-img {
+  position: absolute;
+  top: 448px;
+  width: 251px;
+  height: 251px;
+  overflow: hidden;
+}
+.wj-sg-img::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top right, #F2F2F1 0%, transparent 45%);
+  pointer-events: none;
+}
+.wj-sg-img--s { left: 549px; }
+.wj-sg-img--m { left: 878px; }
+.wj-sg-img--l { left: 1207px; }
+.wj-sg-img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: none;
+}
+
+.wj-disclaimer {
+  position: absolute;
+  left: 1309px;
+  top: 5512px;
+  font-family: "Neue Haas Grotesk Display Pro", sans-serif;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 200;
+  color: #000;
+  line-height: 1.5;
+  white-space: nowrap;
+  margin: 0;
+  z-index: 2;
+}
+
+.wj-footer {
+  position: absolute;
+  left: 0;
+  top: 5715px;
+  width: 100%;
+  z-index: 2;
+}
+.wj-footer-copy {
+  position: absolute;
+  left: calc(50% - 914px);
+  top: 0;
+  width: 196px;
+  height: 27px;
+  font-family: "Neue Haas Grotesk Display Pro", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: #5d0f08;
+  line-height: 1.9;
+  white-space: nowrap;
+  margin: 0;
+}
+.wj-footer-addr {
+  position: absolute;
+  left: calc(50% + 646px);
+  top: 1px;
+  width: 268px;
+  min-height: 54px;
+  font-family: "Neue Haas Grotesk Display Pro", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: #5d0f08;
+  line-height: 1.9;
+}
+.wj-footer-addr p { margin: 0; }

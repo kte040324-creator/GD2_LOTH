@@ -17,8 +17,15 @@ function initThree(container) {
   const scene = new THREE.Scene();
 
   const isSandal = modelPath.includes("wood_sandal");
-  const width = isSandal ? 550 : RECT_SIZE;
-  const height = RECT_SIZE;
+  const isSandalDetail = isSandal && container.closest(".sandal-product");
+  const isWjDetail = modelPath.includes("gem_whitejade") && container.closest(".wj-product");
+  const isAgDetail = modelPath.includes("gem_agate") && container.closest(".ag-product");
+  const isJdDetail = modelPath.includes("gem_jade") && container.closest(".jd-product");
+  const isRudDetail = modelPath.includes("seed_rudraksha") && container.closest(".rud-product");
+  const isAoDetail = modelPath.includes("seed_autumnolive") && container.closest(".ao-product");
+  const isLotDetail = modelPath.includes("seed_lotus") && container.closest(".lot-product");
+  const width = (isWjDetail || isAgDetail || isJdDetail || isRudDetail || isAoDetail || isLotDetail) ? 492 : (isSandalDetail ? 492 : (isSandal ? 550 : RECT_SIZE));
+  const height = (isWjDetail || isSandalDetail || isAgDetail || isJdDetail || isRudDetail || isAoDetail || isLotDetail) ? 423 : RECT_SIZE;
 
   const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
   camera.position.set(0, 0, 5);
@@ -31,7 +38,7 @@ function initThree(container) {
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.2;
   const canvasEl = renderer.domElement;
-  if (isSandal) {
+  if (isSandal && !isSandalDetail) {
     canvasEl.style.position = "absolute";
     canvasEl.style.left = "-80px";
   }
@@ -58,29 +65,78 @@ function initThree(container) {
         model.position.x += 1.0;
         model.position.y -= 0.1;
       }
-      if (modelPath.includes("gem_agate")) {
+      /* gem_agate: 리스팅에서만 위치/스케일 보정, 디테일(ag-product)에서는 아래에서 처리 */
+      if (modelPath.includes("gem_agate") && !container.closest(".ag-product")) {
         model.position.x += 1.05;
         model.position.y -= 0.75;
         model.scale.multiplyScalar(1.2);
       }
-      if (modelPath.includes("gem_jade")) {
+      /* gem_jade: 리스팅에서만 위치/스케일 보정, 디테일(jd-product)에서는 아래에서 처리 */
+      if (modelPath.includes("gem_jade") && !container.closest(".jd-product")) {
         model.position.x += 1.05;
         model.position.y -= 0.8;
         model.scale.multiplyScalar(1.1);
       }
-      if (modelPath.includes("seed_rudraksha")) {
+      /* seed_rudraksha: 리스팅에서만 위치 보정, 디테일(rud-product)에서는 아래에서 처리 */
+      if (modelPath.includes("seed_rudraksha") && !container.closest(".rud-product")) {
         model.position.x -= 0.5;
         model.position.y += 0.35;
       }
-      if (modelPath.includes("seed_autumnolive")) {
+      /* seed_autumnolive: 리스팅에서만 위치 보정, 디테일(ao-product)에서는 아래에서 처리 */
+      if (modelPath.includes("seed_autumnolive") && !container.closest(".ao-product")) {
         model.position.x += 1.3;
         model.position.y -= 0.5;
       }
-      if (modelPath.includes("seed_lotus")) {
+      /* seed_lotus: 리스팅에서만 위치 보정, 디테일(lot-product)에서는 아래에서 처리 */
+      if (modelPath.includes("seed_lotus") && !container.closest(".lot-product")) {
         model.position.x += 0.3;
         model.position.y += 0.05;
       }
-      if (modelPath.includes("seed_")) {
+      if (modelPath.includes("seed_") && !(modelPath.includes("seed_rudraksha") && container.closest(".rud-product")) && !(modelPath.includes("seed_autumnolive") && container.closest(".ao-product")) && !(modelPath.includes("seed_lotus") && container.closest(".lot-product"))) {
+        model.scale.multiplyScalar(1.2);
+      }
+      /* wood_jujube: 리스팅(woods)에서는 작게, 디테일 페이지에서만 크게 */
+      if (modelPath.includes("wood_jujube")) {
+        if (container.closest(".jub-product")) {
+          model.scale.multiplyScalar(1.4);
+        } else {
+          model.scale.multiplyScalar(0.85);
+        }
+      }
+      /* wood_ebony: 리스팅에서는 작게, 디테일 페이지(ebo-product)에서만 크게 */
+      if (modelPath.includes("wood_ebony")) {
+        if (container.closest(".ebo-product")) {
+          model.scale.multiplyScalar(1.4);
+        } else {
+          model.scale.multiplyScalar(0.85);
+        }
+      }
+      /* wood_sandal: 디테일 페이지(sandal-product)에서는 492×423 박스에 맞게 스케일 */
+      if (modelPath.includes("wood_sandal") && container.closest(".sandal-product")) {
+        model.scale.multiplyScalar(1.25);
+      }
+      /* gem_whitejade: 디테일 페이지(wj-product)에서 492×423 박스에 맞게 스케일 */
+      if (modelPath.includes("gem_whitejade") && container.closest(".wj-product")) {
+        model.scale.multiplyScalar(1.2);
+      }
+      /* gem_agate: 디테일 페이지(ag-product)에서 492×423 박스에 맞게 스케일 */
+      if (modelPath.includes("gem_agate") && container.closest(".ag-product")) {
+        model.scale.multiplyScalar(1.2);
+      }
+      /* gem_jade: 디테일 페이지(jd-product)에서 492×423 박스에 맞게 스케일 */
+      if (modelPath.includes("gem_jade") && container.closest(".jd-product")) {
+        model.scale.multiplyScalar(1.2);
+      }
+      /* seed_rudraksha: 디테일 페이지(rud-product)에서 492×423 박스에 맞게 스케일 */
+      if (modelPath.includes("seed_rudraksha") && container.closest(".rud-product")) {
+        model.scale.multiplyScalar(1.2);
+      }
+      /* seed_autumnolive: 디테일 페이지(ao-product)에서 492×423 박스에 맞게 스케일 */
+      if (modelPath.includes("seed_autumnolive") && container.closest(".ao-product")) {
+        model.scale.multiplyScalar(1.2);
+      }
+      /* seed_lotus: 디테일 페이지(lot-product)에서 492×423 박스에 맞게 스케일 */
+      if (modelPath.includes("seed_lotus") && container.closest(".lot-product")) {
         model.scale.multiplyScalar(1.2);
       }
       model.rotation.x = Math.PI / 4;
@@ -93,22 +149,47 @@ function initThree(container) {
   const isSeed = modelPath.includes("seed_");
   const isAutumnOlive = modelPath.includes("seed_autumnolive");
   const isLotus = modelPath.includes("seed_lotus");
+  const isJujube = modelPath.includes("wood_jujube");
+  const isEbony = modelPath.includes("wood_ebony");
 
   const seedLightBoost = isAutumnOlive || isLotus ? 1.25 : 1.0;
+  const darkWoodBoost = isJujube || isEbony ? 1.8 : 1.0;
 
-  const ambient = new THREE.AmbientLight(0xfff0e6, isSeed ? 1.3 * seedLightBoost : 1.0);
+  const ambient = new THREE.AmbientLight(
+    0xfff0e6,
+    isSeed ? 1.3 * seedLightBoost : 1.0 * darkWoodBoost
+  );
   scene.add(ambient);
-  const hemisphere = new THREE.HemisphereLight(0xd4edda, 0xffe4e1, isSeed ? 0.9 * seedLightBoost : 0.7);
+  const hemisphere = new THREE.HemisphereLight(
+    0xd4edda,
+    0xffe4e1,
+    isSeed ? 0.9 * seedLightBoost : 0.7 * darkWoodBoost
+  );
   scene.add(hemisphere);
-  const directional = new THREE.DirectionalLight(0xffe4d6, isSeed ? 1.5 * seedLightBoost : 1.2);
+  const directional = new THREE.DirectionalLight(
+    0xffe4d6,
+    isSeed ? 1.5 * seedLightBoost : 1.2 * darkWoodBoost
+  );
   directional.position.set(2, 2, 3);
   scene.add(directional);
-  const fill = new THREE.DirectionalLight(0xd4edda, isSeed ? 0.7 * seedLightBoost : 0.5);
+  const fill = new THREE.DirectionalLight(
+    0xd4edda,
+    isSeed ? 0.7 * seedLightBoost : 0.5 * darkWoodBoost
+  );
   fill.position.set(-1.5, 1, 2);
   scene.add(fill);
-  const back = new THREE.DirectionalLight(0xffd6d6, isSeed ? 0.45 * seedLightBoost : 0.3);
+  const back = new THREE.DirectionalLight(
+    0xffd6d6,
+    isSeed ? 0.45 * seedLightBoost : 0.3 * darkWoodBoost
+  );
   back.position.set(0, 0, -2);
   scene.add(back);
+
+  if (isJujube || isEbony) {
+    const front = new THREE.DirectionalLight(0xffffff, 0.6);
+    front.position.set(0, 0.5, 2.5);
+    scene.add(front);
+  }
 
   let frameId = 0;
   const animate = () => {
@@ -119,8 +200,8 @@ function initThree(container) {
   animate();
 
   const resize = () => {
-    const w = isSandal ? 550 : (container.clientWidth || RECT_SIZE);
-    const h = container.clientHeight || RECT_SIZE;
+    const w = (isWjDetail || isAgDetail || isJdDetail || isRudDetail || isAoDetail || isLotDetail) ? (container.clientWidth || 492) : (isSandalDetail ? (container.clientWidth || 492) : (isSandal ? 550 : (container.clientWidth || RECT_SIZE)));
+    const h = (isWjDetail || isSandalDetail || isAgDetail || isJdDetail || isRudDetail || isAoDetail || isLotDetail) ? (container.clientHeight || 423) : (container.clientHeight || RECT_SIZE);
     if (w > 0 && h > 0) {
       renderer.setSize(w, h);
       camera.aspect = w / h;
@@ -144,7 +225,7 @@ function initThree(container) {
 }
 
 function initAllCanvases() {
-  document.querySelectorAll(".woods-rect__canvas[data-model], .gems-rect__canvas[data-model], .seeds-rect__canvas[data-model]").forEach((el) => {
+  document.querySelectorAll(".woods-rect__canvas[data-model], .gems-rect__canvas[data-model], .seeds-rect__canvas[data-model], .jujube-rect__canvas[data-model], .ebo-rect__canvas[data-model], .sandal-rect__canvas[data-model], .wj-rect__canvas[data-model], .ag-rect__canvas[data-model], .jd-rect__canvas[data-model], .rud-rect__canvas[data-model], .ao-rect__canvas[data-model], .lot-rect__canvas[data-model]").forEach((el) => {
     initThree(el);
   });
 }
