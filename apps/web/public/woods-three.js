@@ -58,6 +58,28 @@ function initThree(container) {
         model.position.x += 1.0;
         model.position.y -= 0.1;
       }
+      if (modelPath.includes("gem_agate")) {
+        model.position.x += 1.05;
+        model.position.y -= 0.75;
+        model.scale.multiplyScalar(1.2);
+      }
+      if (modelPath.includes("gem_jade")) {
+        model.position.x += 1.05;
+        model.position.y -= 0.8;
+        model.scale.multiplyScalar(1.1);
+      }
+      if (modelPath.includes("seed_rudraksha")) {
+        model.position.x -= 0.5;
+        model.position.y += 0.35;
+      }
+      if (modelPath.includes("seed_autumnolive")) {
+        model.position.x += 1.3;
+        model.position.y -= 0.5;
+      }
+      if (modelPath.includes("seed_lotus")) {
+        model.position.x += 0.3;
+        model.position.y += 0.2;
+      }
       model.rotation.x = Math.PI / 4;
       model.rotation.y = Math.PI / 4;
     },
@@ -88,8 +110,8 @@ function initThree(container) {
   animate();
 
   const resize = () => {
-    const w = isSandal ? 550 : container.clientWidth;
-    const h = container.clientHeight;
+    const w = isSandal ? 550 : (container.clientWidth || RECT_SIZE);
+    const h = container.clientHeight || RECT_SIZE;
     if (w > 0 && h > 0) {
       renderer.setSize(w, h);
       camera.aspect = w / h;
@@ -100,6 +122,7 @@ function initThree(container) {
   const observer = new ResizeObserver(resize);
   observer.observe(container);
   resize();
+  requestAnimationFrame(resize);
 
   return () => {
     cancelAnimationFrame(frameId);
@@ -111,6 +134,13 @@ function initThree(container) {
   };
 }
 
-document.querySelectorAll(".woods-rect__canvas[data-model], .gems-rect__canvas[data-model]").forEach((el) => {
-  initThree(el);
-});
+function initAllCanvases() {
+  document.querySelectorAll(".woods-rect__canvas[data-model], .gems-rect__canvas[data-model], .seeds-rect__canvas[data-model]").forEach((el) => {
+    initThree(el);
+  });
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => requestAnimationFrame(initAllCanvases));
+} else {
+  requestAnimationFrame(initAllCanvases);
+}
