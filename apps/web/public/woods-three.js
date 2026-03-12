@@ -24,6 +24,7 @@ function initThree(container) {
   const isRudDetail = modelPath.includes("seed_rudraksha") && container.closest(".rud-product");
   const isAoDetail = modelPath.includes("seed_autumnolive") && container.closest(".ao-product");
   const isLotDetail = modelPath.includes("seed_lotus") && container.closest(".lot-product");
+  const isDetailPage = !!container.closest(".jub-product, .ebo-product, .sandal-product, .wj-product, .ag-product, .jd-product, .rud-product, .ao-product, .lot-product");
   const width = (isWjDetail || isAgDetail || isJdDetail || isRudDetail || isAoDetail || isLotDetail) ? 492 : (isSandalDetail ? 492 : (isSandal ? 550 : RECT_SIZE));
   const height = (isWjDetail || isSandalDetail || isAgDetail || isJdDetail || isRudDetail || isAoDetail || isLotDetail) ? 423 : RECT_SIZE;
 
@@ -119,21 +120,28 @@ function initThree(container) {
       if (modelPath.includes("gem_whitejade") && container.closest(".wj-product")) {
         model.scale.multiplyScalar(1.2);
       }
-      /* gem_agate: 디테일 페이지(ag-product)에서 492×423 박스에 맞게 스케일 */
+      /* gem_agate: 디테일 페이지(ag-product) – 스케일 + 중앙 보정(왼쪽위 치우침) */
       if (modelPath.includes("gem_agate") && container.closest(".ag-product")) {
         model.scale.multiplyScalar(1.2);
+        model.position.x += 0.45;
+        model.position.y -= 0.35;
       }
-      /* gem_jade: 디테일 페이지(jd-product)에서 492×423 박스에 맞게 스케일 */
+      /* gem_jade: 디테일 페이지(jd-product) – 스케일 + 중앙 보정(왼쪽위 치우침) */
       if (modelPath.includes("gem_jade") && container.closest(".jd-product")) {
         model.scale.multiplyScalar(1.2);
+        model.position.x += 0.45;
+        model.position.y -= 0.35;
       }
-      /* seed_rudraksha: 디테일 페이지(rud-product)에서 492×423 박스에 맞게 스케일 */
+      /* seed_rudraksha: 디테일 페이지(rud-product) – 스케일 + 중앙 보정(오른쪽 치우침) */
       if (modelPath.includes("seed_rudraksha") && container.closest(".rud-product")) {
         model.scale.multiplyScalar(1.2);
+        model.position.x -= 0.55;
       }
-      /* seed_autumnolive: 디테일 페이지(ao-product)에서 492×423 박스에 맞게 스케일 */
+      /* seed_autumnolive: 디테일 페이지(ao-product) – 스케일 + 중앙 보정(왼쪽위 치우침) */
       if (modelPath.includes("seed_autumnolive") && container.closest(".ao-product")) {
         model.scale.multiplyScalar(1.2);
+        model.position.x += 0.5;
+        model.position.y -= 0.35;
       }
       /* seed_lotus: 디테일 페이지(lot-product)에서 492×423 박스에 맞게 스케일 */
       if (modelPath.includes("seed_lotus") && container.closest(".lot-product")) {
@@ -194,7 +202,7 @@ function initThree(container) {
   let frameId = 0;
   const animate = () => {
     frameId = requestAnimationFrame(animate);
-    if (model) model.rotation.z += ROTATION_SPEED;
+    if (model && !isDetailPage) model.rotation.z += ROTATION_SPEED;
     renderer.render(scene, camera);
   };
   animate();

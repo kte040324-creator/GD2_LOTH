@@ -150,6 +150,7 @@
     {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}
   </script>
   <script type="module" src="./woods-three.js"></script>
+  <script src="./detail-layout.js"></script>
   <script>
     (function(){
       var D = 1920;
@@ -182,6 +183,19 @@
         goTo();
       }, 3000);
       goTo();
+    })();
+  </script>
+  <script>
+    (function(){
+      var product = document.querySelector(".ag-product");
+      if (!product) return;
+      var wraps = product.querySelectorAll(".ag-size-wrap");
+      wraps.forEach(function(w) {
+        w.addEventListener("click", function() {
+          wraps.forEach(function(x) { x.classList.remove("is-selected"); });
+          this.classList.add("is-selected");
+        });
+      });
     })();
   </script>
 </body>
