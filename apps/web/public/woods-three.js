@@ -78,7 +78,10 @@ function initThree(container) {
       }
       if (modelPath.includes("seed_lotus")) {
         model.position.x += 0.3;
-        model.position.y += 0.2;
+        model.position.y += 0.05;
+      }
+      if (modelPath.includes("seed_")) {
+        model.scale.multiplyScalar(1.2);
       }
       model.rotation.x = Math.PI / 4;
       model.rotation.y = Math.PI / 4;
@@ -87,17 +90,23 @@ function initThree(container) {
     (err) => console.error("GLTF load error:", err)
   );
 
-  const ambient = new THREE.AmbientLight(0xfff0e6, 1.0);
+  const isSeed = modelPath.includes("seed_");
+  const isAutumnOlive = modelPath.includes("seed_autumnolive");
+  const isLotus = modelPath.includes("seed_lotus");
+
+  const seedLightBoost = isAutumnOlive || isLotus ? 1.25 : 1.0;
+
+  const ambient = new THREE.AmbientLight(0xfff0e6, isSeed ? 1.3 * seedLightBoost : 1.0);
   scene.add(ambient);
-  const hemisphere = new THREE.HemisphereLight(0xd4edda, 0xffe4e1, 0.7);
+  const hemisphere = new THREE.HemisphereLight(0xd4edda, 0xffe4e1, isSeed ? 0.9 * seedLightBoost : 0.7);
   scene.add(hemisphere);
-  const directional = new THREE.DirectionalLight(0xffe4d6, 1.2);
+  const directional = new THREE.DirectionalLight(0xffe4d6, isSeed ? 1.5 * seedLightBoost : 1.2);
   directional.position.set(2, 2, 3);
   scene.add(directional);
-  const fill = new THREE.DirectionalLight(0xd4edda, 0.5);
+  const fill = new THREE.DirectionalLight(0xd4edda, isSeed ? 0.7 * seedLightBoost : 0.5);
   fill.position.set(-1.5, 1, 2);
   scene.add(fill);
-  const back = new THREE.DirectionalLight(0xffd6d6, 0.3);
+  const back = new THREE.DirectionalLight(0xffd6d6, isSeed ? 0.45 * seedLightBoost : 0.3);
   back.position.set(0, 0, -2);
   scene.add(back);
 
