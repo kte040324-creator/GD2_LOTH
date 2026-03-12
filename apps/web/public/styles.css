@@ -9,6 +9,7 @@
   --shadow-card: 0px 4px 6.7px rgba(185, 159, 159, 0.25);
 
   --page-scale: 1;
+  --header-height: 180px;
 }
 
 * {
@@ -38,12 +39,13 @@ body {
 
 .viewport {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
   padding: 0;
+  padding-top: var(--header-height);
 }
 
 /* 뒤로가기: Figma mingcute:back-line, fixed 좌측 하단 x89 / 디자인·색(#5D0F08)·위치 그대로 */
@@ -81,14 +83,34 @@ body {
   transform-origin: top center;
 }
 
-/* Header */
+/* Header: fixed, 스크롤 시 상단 고정, 배경 투명(아이콘만 노출) */
+.header {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) scale(var(--page-scale));
+  transform-origin: top center;
+  width: 1920px;
+  max-width: 100%;
+  height: var(--header-height);
+  z-index: 1000;
+  background: transparent;
+  pointer-events: none;
+}
+.header > * {
+  pointer-events: auto;
+}
+
+/* 뷰포트 기준 왼쪽 89px(뒤로가기와 동일선) – fixed로 맞춤 후 scale */
 .profile-trigger {
-  position: absolute;
-  left: 87px;
+  position: fixed;
+  left: 89px;
   top: 99px;
   width: 33px;
   height: 33px;
-  z-index: 30;
+  z-index: 1001;
+  transform: scale(var(--page-scale, 1));
+  transform-origin: left top;
 }
 
 .icon-account {
@@ -211,19 +233,26 @@ body {
   object-fit: cover;
 }
 
+/* 뷰포트 기준 오른쪽 89px – fixed로 맞춤 후 scale */
 .country {
-  position: absolute;
-  left: 1658px;
+  position: fixed;
+  right: 89px;
+  left: auto;
   top: 100px;
   height: 33px;
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: nowrap;
+  z-index: 1001;
+  transform: scale(var(--page-scale, 1));
+  transform-origin: right top;
 }
 
 .country-icon {
   width: 27px;
   height: 27px;
+  flex-shrink: 0;
 }
 
 .country-text {
@@ -231,14 +260,19 @@ body {
   line-height: 1.14;
   color: var(--c-main);
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .icon-cart {
-  position: absolute;
-  left: 1583px;
+  position: fixed;
+  right: 254px;
+  left: auto;
   top: 99px;
   width: 31px;
   height: 31px;
+  z-index: 1001;
+  transform: scale(var(--page-scale, 1));
+  transform-origin: right top;
 }
 
 .icon-cart-img {
