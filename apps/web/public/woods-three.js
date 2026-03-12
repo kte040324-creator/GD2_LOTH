@@ -29,7 +29,9 @@ function initThree(container) {
   const height = (isWjDetail || isSandalDetail || isAgDetail || isJdDetail || isRudDetail || isAoDetail || isLotDetail) ? 423 : RECT_SIZE;
 
   const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-  camera.position.set(0, 0, 5);
+  /* 디테일 페이지: 양쪽 마진 넓게 + 회전 시 잘리지 않도록 카메라를 더 뒤로 */
+  const cameraZDefault = isDetailPage ? 8 : 5;
+  camera.position.set(0, 0, cameraZDefault);
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setClearColor(0x000000, 0);
@@ -149,6 +151,54 @@ function initThree(container) {
       }
       model.rotation.x = Math.PI / 4;
       model.rotation.y = Math.PI / 4;
+
+      /* 디테일 페이지: 마우스 드래그로 3D 모델 회전 */
+      if (isDetailPage) {
+        let isDragging = false;
+        let lastX = 0;
+        let lastY = 0;
+        const rotateSpeed = 0.005;
+
+        canvasEl.style.cursor = "grab";
+        canvasEl.addEventListener("pointerdown", function (e) {
+          if (e.button !== 0) return;
+          isDragging = true;
+          lastX = e.clientX;
+          lastY = e.clientY;
+          canvasEl.setPointerCapture(e.pointerId);
+          canvasEl.style.cursor = "grabbing";
+        });
+        canvasEl.addEventListener("pointermove", function (e) {
+          if (!isDragging) return;
+          const deltaX = e.clientX - lastX;
+          const deltaY = e.clientY - lastY;
+          lastX = e.clientX;
+          lastY = e.clientY;
+          model.rotation.y += deltaX * rotateSpeed;
+          model.rotation.x += deltaY * rotateSpeed;
+          model.rotation.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, model.rotation.x));
+        });
+        canvasEl.addEventListener("pointerup", function (e) {
+          if (e.button !== 0) return;
+          isDragging = false;
+          canvasEl.releasePointerCapture(e.pointerId);
+          canvasEl.style.cursor = "grab";
+        });
+        canvasEl.addEventListener("pointerleave", function () {
+          isDragging = false;
+          canvasEl.style.cursor = "grab";
+        });
+
+        /* 디테일 페이지: 휠로 확대/축소 */
+        const ZOOM_MIN = 4;
+        const ZOOM_MAX = 12;
+        const ZOOM_STEP = 0.35;
+        canvasEl.addEventListener("wheel", function (e) {
+          e.preventDefault();
+          const dz = e.deltaY > 0 ? ZOOM_STEP : -ZOOM_STEP;
+          camera.position.z = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, camera.position.z + dz));
+        }, { passive: false });
+      }
     },
     undefined,
     (err) => console.error("GLTF load error:", err)

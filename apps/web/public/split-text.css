@@ -1,0 +1,8 @@
+/* SplitText animation: parent and char wrappers */
+.split-parent {
+  overflow: visible;
+}
+.split-parent .split-char {
+  display: inline-block;
+  will-change: transform, opacity;
+}

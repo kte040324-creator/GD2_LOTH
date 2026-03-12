@@ -243,6 +243,20 @@ body {
   object-fit: cover;
 }
 
+/* Detail page: Size Guide S/M/L 이미지 순차 올라오는 애니메이션 */
+.detail-sg .detail-sg-img {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+}
+.detail-sg.sg-visible .detail-sg-img {
+  opacity: 1;
+  transform: translateY(0);
+}
+.detail-sg.sg-visible .detail-sg-img--s { transition-delay: 0s; }
+.detail-sg.sg-visible .detail-sg-img--m { transition-delay: 0.15s; }
+.detail-sg.sg-visible .detail-sg-img--l { transition-delay: 0.3s; }
+
 .logo {
   position: absolute;
   left: 924px;
